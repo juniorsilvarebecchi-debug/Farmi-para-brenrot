@@ -1,43 +1,45 @@
--- game configuration
-local config = {
-	infinity_location = { x = 1000, y = 2000 },
-	divine_location = { x = 3000, y = 4000 },
-	money_collection_amount = 100,
-	menu_options = {"Teleport to Infinity", "Teleport to Divine", "Collect Money"}
-}
+-- Fuja do Tsunami Farm Script
 
--- teleport function
-local function teleport(location)
-	print("Teleporting to " .. location.x .. ", " .. location.y)
-	-- Implementation of teleportation logic would go here
+-- Function to teleport to specified locations
+function teleport(location)
+    if location == "Infinity" then
+        -- Code to teleport to Infinity
+        print("Teleported to Infinity")
+    elseif location == "Divine" then
+        -- Code to teleport to Divine
+        print("Teleported to Divine")
+    else
+        print("Unknown location!")
+    end
 end
 
--- money collection function
-local function collect_money()
-	print("Collecting money...")
-	-- Implementation of money collection logic would go here
-	local amount_collected = config.money_collection_amount
-	print("Collected money amount: " .. amount_collected)
+-- Function to collect money
+function collectMoney()
+    -- Code to collect money
+    print("Money collected!")
 end
 
--- interactive menu function
-local function show_menu()
-	print("Select an option:")
-	for index, option in ipairs(config.menu_options) do
-		print(index .. ": " .. option)
-	end
-
-	local choice = io.read()
-	if choice == "1" then
-		teleport(config.infinity_location)
-	elseif choice == "2" then
-		teleport(config.divine_location)
-	elseif choice == "3" then
-		collect_money()
-	else
-		print("Invalid option, please try again.")
-	end
+-- Main farming loop
+function main()
+    -- Teleport to Infinity
+    teleport("Infinity")
+    -- Simulate farming action
+    print("Farming in progress...")
+    -- Collect money after farming
+    collectMoney()
+    -- Teleport to Divine
+    teleport("Divine")
+    -- Collect money at Divine location
+    collectMoney()
 end
 
--- main execution
-show_menu()
+-- Additional error handling
+function safeExecute(func)
+    local status, err = pcall(func)
+    if not status then
+        print("Error occurred: " .. err)
+    end
+end
+
+-- Execute the main function with error handling
+safeExecute(main)
