@@ -1,41 +1,23 @@
--- Farm para Brenroti - Fuja do Tsunami
--- Script loadstring para automação de farm
+-- Lua script for sending commands to Infinity and Divine locations
 
-local game = game
-local workspace = workspace
-local Players = game:GetService("Players")
-local LocalPlayer = Players.LocalPlayer
-local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
-local Humanoid = Character:WaitForChild("Humanoid")
-
--- Configurações
-local FARM_ENABLED = true
-local FARM_SPEED = 0.5 -- Velocidade do farm (0.1 a 1.0)
-local AUTO_RESPAWN = true
-
--- Função para farmar brenroti
-local function farmBrenroti()
-    while FARM_ENABLED do
-        pcall(function()
-            -- Procura por brenroti no workspace
-            local brenroti = workspace:FindFirstChild("Brenroti") or workspace:FindFirstChildOfClass("Part")
-            
-            if brenroti then
-                -- Move o personagem em direção ao brenroti
-                Character:MoveTo(brenroti.Position + Vector3.new(0, 3, 0))
-                
-                -- Tenta coletar/farmar
-                if brenroti:FindFirstChild("TouchInterest") then
-                    Humanoid:MoveTo(brenroti.Position)
-                end
-            end
-        end)
-        
-        wait(FARM_SPEED)
-    end
+local function teleportTo(location)
+    -- Code for teleporting to the specified location
+    print("Teleporting to " .. location)
 end
 
--- Inicia o farm
-farmBrenroti()
+local function collectMoney(options)
+    -- Code for collecting money based on configurable options
+    print("Collecting money with options:", options)
+end
 
-print("✓ Script de farm iniciado!")
+local function showMenu()
+    -- Code for displaying the menu to the user
+    print("Menu: 1. Teleport to Infinity  2. Teleport to Divine  3. Collect Money")
+end
+
+-- Main execution block
+showMenu()
+
+-- Example of how to call the functions
+teleportTo("Infinity")
+collectMoney({autoCollect = true, amount = 1000})
